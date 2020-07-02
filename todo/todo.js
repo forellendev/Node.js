@@ -1,10 +1,3 @@
-// Simple notes and todo app
-
-//const fs = require('fs');
-
-//fs.writeFileSync('notes.md', 'Buy groceries');
-//fs.appendFileSync('notes.md', '\nDo things');
-
 const add = require('./utilities.js');
 const notes = require('./notes.js');
 const { default: validator } = require('validator');
