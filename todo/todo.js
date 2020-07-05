@@ -6,9 +6,9 @@ const yargs = require('yargs');
 
 yargs.version('2.0.0');
 
-console.log(validator.isEmail('Mike@example.com'));
-console.log(validator.isURL('https://google.com'));
-console.log(chalk.green.bgWhite.bold('Success'));
+// console.log(validator.isEmail('Mike@example.com'));
+// console.log(validator.isURL('https://google.com'));
+// console.log(chalk.green.bgWhite.bold('Success'));
 
 // Path to node executable, file and params
 // console.log(process.argv);
@@ -17,8 +17,21 @@ console.log(chalk.green.bgWhite.bold('Success'));
 yargs.command({
     command: 'add',
     describe: 'Add new note.',
-    handler: function() {
-        console.log('Note added.');
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        },
+        body: {
+            describe: 'Note body',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv) {
+        console.log('Title: ' + argv.title);
+        console.log('Body: ' + argv.body);
     }
 });
 
@@ -49,4 +62,4 @@ yargs.command({
     }
 });
 
-console.log(yargs.argv);
+yargs.parse();
