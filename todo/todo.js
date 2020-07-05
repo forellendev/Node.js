@@ -6,9 +6,9 @@ const yargs = require('yargs');
 
 yargs.version('2.0.0');
 
-// console.log(validator.isEmail('Mike@example.com'));
-// console.log(validator.isURL('https://google.com'));
-// console.log(chalk.green.bgWhite.bold('Success'));
+console.log(validator.isEmail('Mike@example.com'));
+console.log(validator.isURL('https://google.com'));
+console.log(chalk.green.bgWhite.bold('Success'));
 
 // Path to node executable, file and params
 // console.log(process.argv);
@@ -30,8 +30,7 @@ yargs.command({
         }
     },
     handler: function(argv) {
-        console.log('Title: ' + argv.title);
-        console.log('Body: ' + argv.body);
+        notes.addNote(argv.title, argv.body);
     }
 });
 
@@ -62,4 +61,4 @@ yargs.command({
     }
 });
 
-yargs.parse();
+console.log(yargs.argv);
