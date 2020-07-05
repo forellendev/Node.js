@@ -1,6 +1,6 @@
 const add = require('./utilities.js');
 const notes = require('./notes.js');
-const { default: validator } = require('validator');
+const validator = require('validator');
 const chalk = require('chalk');
 const yargs = require('yargs');
 
