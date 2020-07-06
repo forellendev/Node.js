@@ -1,16 +1,16 @@
 const fs = require('fs');
 
-const getNotes = function() {
+const getNotes = function () {
     return 'Accessing notes...';
-}
+};
 
-const addNote = function(title, body) {
+const addNote = function (title, body) {
     const notes = loadNotes();
-    const duplicates = notes.filter(function(note) {
-        return note.title === title
+    const duplicates = notes.filter(function (note) {
+        return note.title === title;
     });
 
-    if(duplicates.length === 0) {
+    if (duplicates.length === 0) {
         notes.push({
             title: title,
             body: body
@@ -20,30 +20,39 @@ const addNote = function(title, body) {
     } else {
         console.log('Note title already in use.');
     }
-    
-}
 
-const loadNotes = function() {
+};
+
+const removeNote = function (title) {
+    const notes = loadNotes();
+    const toKeep = notes.filter(function (note) {
+        return note.title != title;
+    });
+    saveNotes(toKeep);
+};
+
+const loadNotes = function () {
     try {
         const buffer = fs.readFileSync('notes.json');
         const data = buffer.toString();
         return JSON.parse(data);
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return [];
     }
-}
+};
 
-const saveNotes = function(notes) {
+const saveNotes = function (notes) {
     try {
         const data = JSON.stringify(notes);
         fs.writeFileSync('notes.json', data);
-    } catch(error) {
+    } catch (error) {
         console.log(error);
     }
-}
+};
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 };
