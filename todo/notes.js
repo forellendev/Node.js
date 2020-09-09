@@ -10,7 +10,7 @@ const addNote = function(title, body) {
         return note.title === title
     });
 
-    if(duplicates.length === 0) {
+    if (duplicates.length === 0) {
         notes.push({
             title: title,
             body: body
@@ -28,7 +28,7 @@ const loadNotes = function() {
         const buffer = fs.readFileSync('notes.json');
         const data = buffer.toString();
         return JSON.parse(data);
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return [];
     }
